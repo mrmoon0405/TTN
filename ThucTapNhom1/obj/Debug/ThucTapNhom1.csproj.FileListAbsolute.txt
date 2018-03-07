@@ -1,0 +1,10 @@
+c:\users\home\documents\visual studio 2013\Projects\ThucTapNhom1\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\bin\Debug\ThucTapNhom1.pdb
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.csprojResolveAssemblyReference.cache
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.Form1.resources
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.Properties.Resources.resources
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
+C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb
