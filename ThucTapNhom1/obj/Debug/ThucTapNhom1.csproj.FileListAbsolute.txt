@@ -8,3 +8,12 @@ C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\Thuc
 C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache
 C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
 C:\Users\Home\Desktop\Thuc Tap Nhom (2)\ThucThapNhom\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb
+D:\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
+D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
+D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb
+D:\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe
+D:\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.pdb
+D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csprojResolveAssemblyReference.cache
+D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Form1.resources
+D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Properties.Resources.resources
+D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache

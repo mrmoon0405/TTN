@@ -62,6 +62,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyBanHangDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyBanHangDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangDataSet2.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +109,17 @@
     </None>
     <None Include="QuanLyBanHangDataSet1.xss">
       <DependentUpon>QuanLyBanHangDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet2.xsc">
+      <DependentUpon>QuanLyBanHangDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyBanHangDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyBanHangDataSet2.xss">
+      <DependentUpon>QuanLyBanHangDataSet2.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

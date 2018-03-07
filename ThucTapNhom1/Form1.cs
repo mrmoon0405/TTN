@@ -19,7 +19,9 @@ namespace ThucTapNhom1
         {
             InitializeComponent();
             layPX();
+            layncc();
         }
+        // Phan Phieu Xuat
         void lockcontrol()
         {
             btnthempx.Enabled = false;
@@ -169,29 +171,6 @@ namespace ThucTapNhom1
                 MessageBox.Show("Xóa Thành Công");
             }
         }
-        private void btnluupx_Click(object sender, EventArgs e)
-        {
-            txtidpx.ReadOnly = true;
-            unlockcontrol();
-            if (flag == "add")
-            {
-                themPX();
-            }
-            if (flag == "edit")
-            {
-                suaPX();
-            }
-
-            txthtttpx.Clear();
-            txtidpx.Clear();
-            txttenpx.Clear();
-            txttienpx.Clear();
-        }
-        private void btnhuypx_Click(object sender, EventArgs e)
-        {
-            txtidpx.ReadOnly = false;
-            unlockcontrol();
-        }
         private void btnluupx_Click_1(object sender, EventArgs e)
         {
             txtidpx.ReadOnly = true;
@@ -335,14 +314,293 @@ namespace ThucTapNhom1
                 con.Close();
             }
         }
-
+        // Ket thuc Phieu Xuat
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'quanLyBanHangDataSet2.NCC' table. You can move, or remove it, as needed.
+            this.nCCTableAdapter.Fill(this.quanLyBanHangDataSet2.NCC);
             // TODO: This line of code loads data into the 'quanLyBanHangDataSet1.KhachHang' table. You can move, or remove it, as needed.
             this.khachHangTableAdapter.Fill(this.quanLyBanHangDataSet1.KhachHang);
             // TODO: This line of code loads data into the 'quanLyBanHangDataSet.SanPham' table. You can move, or remove it, as needed.
             this.sanPhamTableAdapter.Fill(this.quanLyBanHangDataSet.SanPham);
 
         }
+        // Phan Nha Cung Cap
+        void Khoancc()
+        {
+            btnthemncc.Enabled = false;
+            btnsuancc.Enabled = false;
+            btnxoancc.Enabled = false;
+            btnbackncc.Enabled = false;
+            btntimkiemncc.Enabled = false;
+            btnquoctencc.Enabled = false;
+            btntrongnuocncc.Enabled = false;
+            btnluuncc.Enabled = true;
+            btnhuyncc.Enabled = true;
+        }
+        void Khoahongncc()
+        {
+            btntrongnuocncc.Enabled = true;
+            btnquoctencc.Enabled = true;
+            btntimkiemncc.Enabled = true;
+            btnthemncc.Enabled = true;
+            btnsuancc.Enabled = true;
+            btnxoancc.Enabled = true;
+            btnbackncc.Enabled = true;
+            btnluuncc.Enabled = false;
+            btnhuyncc.Enabled = false;
+        }
+        void autoidNCC()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            string sqlSelect = "showncc";
+            SqlCommand cmd = new SqlCommand(sqlSelect, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dsncc = new DataTable();
+            adapter.Fill(dsncc);
+            string g = "";
+            if (dsncc.Rows.Count <= 0)
+            {
+                g = "NCC01";
+            }
+            else
+            {
+                int k;
+                g = "NCC";
+                k = Convert.ToInt32(dsncc.Rows[dsncc.Rows.Count - 1][0].ToString().Substring(3, 2));
+                k = k + 1;
+                if (k < 10)
+                    g = g + "0";
+                g = g + k.ToString();
+            }
+            txtidncc.Text = g;
+        }
+        void layncc()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "showncc";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dsncc = new DataSet();
+                adapter.Fill(dsncc);
+                dgvNCC.DataSource = dsncc.Tables[0];
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+        private void btnthemncc_Click(object sender, EventArgs e)
+        {
+            autoidNCC();
+            flag = "add";
+            Khoancc();
+        }
+        private void btnsuancc_Click(object sender, EventArgs e)
+        {
+            flag = "edit";
+            Khoancc();
+        }
+        private void btnxoancc_Click(object sender, EventArgs e)
+        {
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+
+                try
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = "XoaNCC";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_idNCC", txtidncc.Text);
+                    command.Connection = conn;
+                    command.ExecuteNonQuery();
+                    layncc();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+        private void btnluuncc_Click(object sender, EventArgs e)
+        {
+            if (flag == "edit")
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        conn.Open();
+                        SqlCommand command = new SqlCommand("SuaNCC", conn);
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (string.IsNullOrEmpty(txtidncc.Text) || string.IsNullOrEmpty(txttenncc.Text) || string.IsNullOrEmpty(txtdcncc.Text) || string.IsNullOrEmpty(txtsdtncc.Text) || string.IsNullOrEmpty(txtdongiancc.Text))
+                        {
+                            MessageBox.Show("Bạn chưa nhập dữ liệu đầy đủ");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@_idNCC", txtidncc.Text);
+                        command.Parameters.AddWithValue("@_TenNCC", txttenncc.Text);
+                        command.Parameters.AddWithValue("@_DC", txtdcncc.Text);
+                        command.Parameters.AddWithValue("@_SDT", txtsdtncc.Text);
+                        command.Parameters.AddWithValue("@_DonGia", txtdongiancc.Text);
+                        command.ExecuteNonQuery();
+                        layncc();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    finally
+                    {
+                        if (conn != null && conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+            if (flag == "add")
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        con.Open();
+                        SqlCommand command = new SqlCommand("ThemNCC", con);
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (string.IsNullOrEmpty(txtidncc.Text) || string.IsNullOrEmpty(txttenncc.Text) || string.IsNullOrEmpty(txtdcncc.Text) || string.IsNullOrEmpty(txtsdtncc.Text) || string.IsNullOrEmpty(txtdongiancc.Text))
+                        {
+                            MessageBox.Show("Bạn chưa nhập dữ liệu đầy đủ");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@_idNCC", txtidncc.Text);
+                        command.Parameters.AddWithValue("@_tenNCC", txttenncc.Text);
+                        command.Parameters.AddWithValue("@_DC", txtdcncc.Text);
+                        command.Parameters.AddWithValue("@_SDT", txtsdtncc.Text);
+                        command.Parameters.AddWithValue("@_DonGia", txtdongiancc.Text);
+                        command.ExecuteNonQuery();
+                        layncc();
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        if (con != null && con.State == ConnectionState.Open)
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+            }
+            Khoahongncc();
+        }
+        private void btnhuyncc_Click(object sender, EventArgs e)
+        {
+            Khoahongncc();
+        }
+        private void btntimkiemncc_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("TimTenNCC", con);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_TenNCC", "%" + cbtimkiemncc.Text + "%");
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dsNCC = new DataSet();
+                    adapter.Fill(dsNCC);
+                    dgvNCC.DataSource = dsNCC.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+
+                }
+            }
+        }
+        private void btntrongnuocncc_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = con;
+            command.CommandText = "TrongNuoc";
+            command.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet tkncc = new DataSet();
+            adapter.Fill(tkncc);
+            dgvNCC.DataSource = tkncc.Tables[0];
+            adapter.Dispose();
+            con.Close();
+        }
+        private void btnquoctencc_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+            SqlCommand command = new SqlCommand();
+            command.Connection = con;
+            command.CommandText = "QuocTe";
+            command.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataSet tkncc = new DataSet();
+            adapter.Fill(tkncc);
+            dgvNCC.DataSource = tkncc.Tables[0];
+            adapter.Dispose();
+            con.Close();
+        }
+        private void btnbackncc_Click(object sender, EventArgs e)
+        {
+            layncc();
+        }
+        private void dgvNCC_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtidncc.Text = dgvNCC.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txttenncc.Text = dgvNCC.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtdongiancc.Text = dgvNCC.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txtdcncc.Text = dgvNCC.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtsdtncc.Text = dgvNCC.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
+        // Ket Thuc Nha Cung Cap
+        // Phan Nhan Vien
+        // Ket Thuc Phan Nhan Vien
+        // Phan San Pham
+        // Ket Thuc Phan San Pham
+        // Phan Phieu Nhap
+        // Ket Thuc Phan Phieu Nhap
+        // Phan Khach Hang
+        // Ket Thuc Phan Khach Hang
+
+
+
+
+
     }
 }
