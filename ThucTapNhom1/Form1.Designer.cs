@@ -123,6 +123,14 @@
             this.txttimkiemkh = new System.Windows.Forms.TextBox();
             this.quanLyBanHangDataSet3 = new ThucTapNhom1.QuanLyBanHangDataSet();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dgvPhieuNhap = new System.Windows.Forms.DataGridView();
+            this.dgvThongKe = new System.Windows.Forms.DataGridView();
+            this.btnThongKe = new System.Windows.Forms.Button();
+            this.groupBox22 = new System.Windows.Forms.GroupBox();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.btnChuyenKhoan = new System.Windows.Forms.Button();
+            this.btnTrucTiep = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvkhpx)).BeginInit();
@@ -149,6 +157,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvdskh)).BeginInit();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongKe)).BeginInit();
+            this.groupBox22.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -156,6 +168,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(8, 6);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.tabControl1.Name = "tabControl1";
@@ -1166,6 +1179,96 @@
             this.groupBox6.TabIndex = 23;
             this.groupBox6.TabStop = false;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.groupBox22);
+            this.tabPage4.Controls.Add(this.dgvThongKe);
+            this.tabPage4.Controls.Add(this.dgvPhieuNhap);
+            this.tabPage4.Location = new System.Drawing.Point(8, 39);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(2260, 1091);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Phiếu Nhập";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dgvPhieuNhap
+            // 
+            this.dgvPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPhieuNhap.Location = new System.Drawing.Point(0, 4);
+            this.dgvPhieuNhap.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvPhieuNhap.Name = "dgvPhieuNhap";
+            this.dgvPhieuNhap.RowTemplate.Height = 24;
+            this.dgvPhieuNhap.Size = new System.Drawing.Size(1097, 1065);
+            this.dgvPhieuNhap.TabIndex = 8;
+            // 
+            // dgvThongKe
+            // 
+            this.dgvThongKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvThongKe.Location = new System.Drawing.Point(1153, 2);
+            this.dgvThongKe.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvThongKe.Name = "dgvThongKe";
+            this.dgvThongKe.RowTemplate.Height = 24;
+            this.dgvThongKe.Size = new System.Drawing.Size(618, 1067);
+            this.dgvThongKe.TabIndex = 9;
+            this.dgvThongKe.Visible = false;
+            // 
+            // btnThongKe
+            // 
+            this.btnThongKe.Location = new System.Drawing.Point(8, 593);
+            this.btnThongKe.Margin = new System.Windows.Forms.Padding(4);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(395, 146);
+            this.btnThongKe.TabIndex = 10;
+            this.btnThongKe.Text = "Thống Kê";
+            this.btnThongKe.UseVisualStyleBackColor = true;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click_1);
+            // 
+            // groupBox22
+            // 
+            this.groupBox22.Controls.Add(this.btnBack);
+            this.groupBox22.Controls.Add(this.btnThongKe);
+            this.groupBox22.Controls.Add(this.btnChuyenKhoan);
+            this.groupBox22.Controls.Add(this.btnTrucTiep);
+            this.groupBox22.Location = new System.Drawing.Point(1814, 7);
+            this.groupBox22.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox22.Name = "groupBox22";
+            this.groupBox22.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox22.Size = new System.Drawing.Size(419, 1062);
+            this.groupBox22.TabIndex = 11;
+            this.groupBox22.TabStop = false;
+            this.groupBox22.Text = "Thanh Toán";
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(34, 409);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(347, 117);
+            this.btnBack.TabIndex = 2;
+            this.btnBack.Text = "Trở lại";
+            this.btnBack.UseVisualStyleBackColor = true;
+            // 
+            // btnChuyenKhoan
+            // 
+            this.btnChuyenKhoan.Location = new System.Drawing.Point(34, 221);
+            this.btnChuyenKhoan.Margin = new System.Windows.Forms.Padding(4);
+            this.btnChuyenKhoan.Name = "btnChuyenKhoan";
+            this.btnChuyenKhoan.Size = new System.Drawing.Size(347, 112);
+            this.btnChuyenKhoan.TabIndex = 1;
+            this.btnChuyenKhoan.Text = "Chuyển Khoản";
+            this.btnChuyenKhoan.UseVisualStyleBackColor = true;
+            // 
+            // btnTrucTiep
+            // 
+            this.btnTrucTiep.Location = new System.Drawing.Point(34, 52);
+            this.btnTrucTiep.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTrucTiep.Name = "btnTrucTiep";
+            this.btnTrucTiep.Size = new System.Drawing.Size(347, 104);
+            this.btnTrucTiep.TabIndex = 0;
+            this.btnTrucTiep.Text = "Trực Tiếp";
+            this.btnTrucTiep.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1208,6 +1311,10 @@
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuNhap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvThongKe)).EndInit();
+            this.groupBox22.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1307,6 +1414,14 @@
         private System.Windows.Forms.TextBox txtsdtkh;
         private System.Windows.Forms.GroupBox groupBox6;
         private QuanLyBanHangDataSet quanLyBanHangDataSet3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.GroupBox groupBox22;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnThongKe;
+        private System.Windows.Forms.Button btnChuyenKhoan;
+        private System.Windows.Forms.Button btnTrucTiep;
+        private System.Windows.Forms.DataGridView dgvThongKe;
+        private System.Windows.Forms.DataGridView dgvPhieuNhap;
     }
 }
 

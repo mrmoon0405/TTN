@@ -21,6 +21,7 @@ namespace ThucTapNhom1
             layPX();
             layncc();
             layKH();
+            layPN();
         }
         // Phan Phieu Xuat
         void lockcontrol()
@@ -597,6 +598,59 @@ namespace ThucTapNhom1
         // Phan San Pham
         // Ket Thuc Phan San Pham
         // Phan Phieu Nhap
+        void layPN()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            string sqlSelect = "ShowPN";
+            SqlCommand cmd = new SqlCommand(sqlSelect, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet dsnv = new DataSet();
+            adapter.Fill(dsnv);
+            dgvPhieuNhap.DataSource = dsnv.Tables[0];
+        }
+        private void btnThongKe_Click_1(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            string sqlSelect = "ThongKe";
+            SqlCommand cmd = new SqlCommand(sqlSelect, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet dsnv = new DataSet();
+            adapter.Fill(dsnv);
+            dgvThongKe.DataSource = dsnv.Tables[0];
+            adapter.Dispose();
+            dgvThongKe.Visible = true;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            layPN();
+        }
+
+        private void btnChuyenKhoan_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            string sqlSelect = "Chuyen Khoan";
+            SqlCommand cmd = new SqlCommand(sqlSelect, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet dsnv = new DataSet();
+            adapter.Fill(dsnv);
+            dgvPhieuNhap.DataSource = dsnv.Tables[0];
+        }
+
+        private void btnTrucTiep_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            string sqlSelect = "TrucTiep";
+            SqlCommand cmd = new SqlCommand(sqlSelect, con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataSet dsnv = new DataSet();
+            adapter.Fill(dsnv);
+            dgvPhieuNhap.DataSource = dsnv.Tables[0];
+        }
         // Ket Thuc Phan Phieu Nhap
         // Phan Khach Hang
 
@@ -817,6 +871,10 @@ namespace ThucTapNhom1
             txtdckh.Text = dgvdskh.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtsdtkh.Text = dgvdskh.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
+
+      
+
+       
         // Ket Thuc Phan Khach Hang
     }
 
