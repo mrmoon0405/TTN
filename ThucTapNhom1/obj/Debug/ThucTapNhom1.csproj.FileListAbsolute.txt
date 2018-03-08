@@ -26,3 +26,6 @@ C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csprojRes
 C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Form1.resources
 C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Properties.Resources.resources
 C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache
+C:\Users\dungt\Desktop\ThucTapNhomCuoi\TTN\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
+C:\Users\dungt\Desktop\ThucTapNhomCuoi\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
+C:\Users\dungt\Desktop\ThucTapNhomCuoi\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb

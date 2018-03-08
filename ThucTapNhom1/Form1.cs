@@ -594,6 +594,255 @@ namespace ThucTapNhom1
        
         // Ket Thuc Nha Cung Cap
         // Phan Nhan Vien
+        void Khoatdung()
+        {
+            btnthemnvtdung.Enabled = false;
+            btnsuanvtdung.Enabled = false;
+            btnxoanvtdung.Enabled = false;
+            btnluunvtdung.Enabled = true;
+            btnhuynvtdung.Enabled = true;
+        }
+        void Khoahongtdung()
+        {
+            btnthemnvtdung.Enabled = true;
+            btnsuanvtdung.Enabled = true;
+            btnxoanvtdung.Enabled = true;
+            btnluunvtdung.Enabled = false;
+            btnhuynvtdung.Enabled = false;
+        }
+        void layNVtdung()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "HTNV";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dsnv = new DataSet();
+                adapter.Fill(dsnv);
+                dgvnvtdung.DataSource = dsnv.Tables[0];
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+        private void dgvnvtdung_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtidnvtd.Text = dgvnvtdung.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txttennvtd.Text = dgvnvtdung.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtcanvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtdcnvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtsdtnvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[4].Value.ToString();
+        }
+        void Tusinhmatdung()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            string sqlSelect = "HTNV";
+            SqlCommand cmd = new SqlCommand(sqlSelect, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dsnv = new DataTable();
+            adapter.Fill(dsnv);
+            string g = "";
+            if (dsnv.Rows.Count <= 0)
+            {
+                g = "NV01";
+            }
+            else
+            {
+                int k;
+                g = "NV";
+                k = Convert.ToInt32(dsnv.Rows[dsnv.Rows.Count - 1][0].ToString().Substring(2, 2));
+                k = k + 1;
+                if (k < 10)
+                    g = g + "0";
+                g = g + k.ToString();
+            }
+            txtidnvtd.Text = g;
+        }
+        private void cbbtimkiemtdung_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("TimNV", con);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@Ca", "%" + cbbtimkiemtdung.Text + "%");
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dsNV = new DataSet();
+                    adapter.Fill(dsNV);
+                    dgvnvtdung.DataSource = dsNV.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+
+                }
+            }
+        }
+        private void btnthemnvtdung_Click(object sender, EventArgs e)
+        {
+            Tusinhmatdung();
+            flag = "add";
+            Khoatdung();
+        }
+        private void btnsuanvtdung_Click(object sender, EventArgs e)
+        {
+            flag = "edit";
+            Khoatdung();
+        }
+        private void btnxoanvtdung_Click(object sender, EventArgs e)
+        {
+
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+
+                try
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = "Xoa_NV";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_idNV", txtidnvtd.Text);
+                    command.Connection = conn;
+                    command.ExecuteNonQuery();
+                    layNVtdung();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+        private void btnluunvtdung_Click(object sender, EventArgs e)
+        {
+            if (flag == "edit")
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+
+                        conn.Open();
+                        SqlCommand command = new SqlCommand("Sua_NV", conn);
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (string.IsNullOrEmpty(txtidnvtd.Text) || string.IsNullOrEmpty(txttennvtd.Text) || string.IsNullOrEmpty(txtcanvtdung.Text) || string.IsNullOrEmpty(txtdcnvtdung.Text) || string.IsNullOrEmpty(txtsdtnvtdung.Text))
+                        {
+                            MessageBox.Show("Bạn chưa nhập dữ liệu đầy đủ");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@_idNV", txtidnvtd.Text);
+                        command.Parameters.AddWithValue("@_TenNV", txttennvtd.Text);
+                        command.Parameters.AddWithValue("@_Ca", txtcanvtdung.Text);
+                        command.Parameters.AddWithValue("@_DC", txtdcnvtdung.Text);
+                        command.Parameters.AddWithValue("@_SDT", txtsdtnvtdung.Text);
+                        command.ExecuteNonQuery();
+                        layNVtdung();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    finally
+                    {
+                        if (conn != null && conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+            if (flag == "add")
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        con.Open();
+                        SqlCommand command = new SqlCommand("Them_NV", con);
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (string.IsNullOrEmpty(txtidnvtd.Text) || string.IsNullOrEmpty(txttennvtd.Text) || string.IsNullOrEmpty(txtcanvtdung.Text) || string.IsNullOrEmpty(txtdcnvtdung.Text) || string.IsNullOrEmpty(txtsdtnvtdung.Text))
+                        {
+                            MessageBox.Show("Bạn chưa nhập dữ liệu đầy đủ");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@_idNV", txtidnvtd.Text);
+                        command.Parameters.AddWithValue("@_TenNV", txttennvtd.Text);
+                        command.Parameters.AddWithValue("@_Ca", txtcanvtdung.Text);
+                        command.Parameters.AddWithValue("@_DC", txtdcnvtdung.Text);
+                        command.Parameters.AddWithValue("@_SDT", txtsdtnvtdung.Text);
+                        command.ExecuteNonQuery();
+                        layNVtdung();
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        if (con != null && con.State == ConnectionState.Open)
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+            }
+            Khoahongtdung();
+        }
+        private void btnhuynvtdung_Click(object sender, EventArgs e)
+        {
+            Khoahongtdung();
+        }
+        private void btntimkiemtdung_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand("TimNV", con);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Ca", "%" + cbbtimkiemtdung.Text + "%");
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dsNV = new DataSet();
+                adapter.Fill(dsNV);
+                dgvnvtdung.DataSource = dsNV.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+
+            }
+        }
+        private void btnbacktdung_Click(object sender, EventArgs e)
+        {
+            layNVtdung();
+        }
         // Ket Thuc Phan Nhan Vien
         // Phan San Pham
         // Ket Thuc Phan San Pham
