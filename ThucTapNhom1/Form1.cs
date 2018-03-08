@@ -845,6 +845,261 @@ namespace ThucTapNhom1
         }
         // Ket Thuc Phan Nhan Vien
         // Phan San Pham
+        void Khoamh()
+        {
+            btntrangchumh.Enabled = false;
+            btntimkiemmh.Enabled = false;
+            btnthemmh.Enabled = false;
+            btnsuamh.Enabled = false;
+            btnxoamh.Enabled = false;
+            btnluumh.Enabled = true;
+            btnhuymh.Enabled = true;
+        }
+        void KhoaHongmh()
+        {
+            btnhuymh.Enabled = false;
+            btnluumh.Enabled = false;
+            btnsuamh.Enabled = true;
+            btnthemmh.Enabled = true;
+            btntimkiemmh.Enabled = true;
+            btntrangchumh.Enabled = true;
+            btnxoamh.Enabled = true;
+        }
+        void layMH()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "ShowSP";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dssp = new DataSet();
+                adapter.Fill(dssp);
+                dgvspmh.DataSource = dssp.Tables[0];
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+        void layCTSP()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "ShowCTSP";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dssp = new DataSet();
+                adapter.Fill(dssp);
+                dgvctspmh.DataSource = dssp.Tables[0];
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+        private void dgvspmh_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtidmh.Text = dgvspmh.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txttenmh.Text = dgvspmh.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtnguongmh.Text = dgvspmh.Rows[e.RowIndex].Cells[2].Value.ToString();
+            cbbidnccmh.Text = dgvspmh.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
+        void Tusinhmamh()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            string sqlSelect = "ShowSP";
+            SqlCommand cmd = new SqlCommand(sqlSelect, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dssp = new DataTable();
+            adapter.Fill(dssp);
+            string g = "";
+            if (dssp.Rows.Count <= 0)
+            {
+                g = "MH01";
+            }
+            else
+            {
+                int k;
+                g = "MH";
+                k = Convert.ToInt32(dssp.Rows[dssp.Rows.Count - 1][0].ToString().Substring(2, 2));
+                k = k + 1;
+                if (k < 10)
+                    g = g + "0";
+                g = g + k.ToString();
+            }
+            txtidmh.Text = g;
+        }
+        private void btnthemmh_Click(object sender, EventArgs e)
+        {
+            Tusinhmamh();
+            flag = "add";
+            Khoamh();
+        }
+        private void btnsuamh_Click(object sender, EventArgs e)
+        {
+            flag = "edit";
+            Khoamh();
+        }
+        private void btnxoamh_Click(object sender, EventArgs e)
+        {
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+
+                try
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = "XoaSP";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_idMH", txtidmh.Text);
+                    command.Connection = conn;
+                    command.ExecuteNonQuery();
+                    layMH();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+        }
+        private void btnluumh_Click(object sender, EventArgs e)
+        {
+            if (flag == "edit")
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    try
+                    {
+                        conn.Open();
+                        SqlCommand command = new SqlCommand("Sua_SP", conn);
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (string.IsNullOrEmpty(txtidmh.Text) || string.IsNullOrEmpty(txttenmh.Text) || string.IsNullOrEmpty(txtnguongmh.Text) || string.IsNullOrEmpty(cbbidnccmh.Text))
+                        {
+                            MessageBox.Show("Bạn chưa nhập dữ liệu đầy đủ");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@_idMH", txtidmh.Text);
+                        command.Parameters.AddWithValue("@_TenHang", txttenmh.Text);
+                        command.Parameters.AddWithValue("@_Nguong", txtnguongmh.Text);
+                        command.Parameters.AddWithValue("@_idNCC", cbbidnccmh.Text);
+                        command.ExecuteNonQuery();
+                        layMH();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                    finally
+                    {
+                        if (conn != null && conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
+                }
+            }
+
+            if (flag == "add")
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        con.Open();
+                        SqlCommand command = new SqlCommand("ThemSP", con);
+                        command.CommandType = CommandType.StoredProcedure;
+                        if (string.IsNullOrEmpty(txtidmh.Text) || string.IsNullOrEmpty(txttenmh.Text) || string.IsNullOrEmpty(txtnguongmh.Text) || string.IsNullOrEmpty(cbbidnccmh.Text))
+                        {
+                            MessageBox.Show("Bạn chưa nhập dữ liệu đầy đủ");
+                            return;
+                        }
+                        command.Parameters.AddWithValue("@_idMH", txtidmh.Text);
+                        command.Parameters.AddWithValue("@_TenHang", txttenmh.Text);
+                        command.Parameters.AddWithValue("@_Nguong", txtnguongmh.Text);
+                        command.Parameters.AddWithValue("@_idNCC", cbbidnccmh.Text);
+                        command.ExecuteNonQuery();
+                        layMH();
+                    }
+                    catch
+                    {
+
+                    }
+                    finally
+                    {
+                        if (con != null && con.State == ConnectionState.Open)
+                        {
+                            con.Close();
+                        }
+                    }
+                }
+            }
+            KhoaHongmh();
+        }
+        private void btntimkiemmh_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("TimSP", con);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_TenHang", "%" + cbtimkiemmh.Text + "%");
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dssp = new DataSet();
+                    adapter.Fill(dssp);
+                    dgvspmh.DataSource = dssp.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+
+                }
+            }
+        }
+        private void btnctspmh_Click(object sender, EventArgs e)
+        {
+            layCTSP();
+        }
+        private void btntrangchumh_Click(object sender, EventArgs e)
+        {
+            layMH();
+        }
         // Ket Thuc Phan San Pham
         // Phan Phieu Nhap
         void layPN()
