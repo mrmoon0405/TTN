@@ -29,3 +29,12 @@ C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.Ge
 C:\Users\dungt\Desktop\ThucTapNhomCuoi\TTN\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
 C:\Users\dungt\Desktop\ThucTapNhomCuoi\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
 C:\Users\dungt\Desktop\ThucTapNhomCuoi\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb
+D:\DOTA\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
+D:\DOTA\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
+D:\DOTA\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb
+D:\DOTA\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe
+D:\DOTA\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.pdb
+D:\DOTA\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csprojResolveAssemblyReference.cache
+D:\DOTA\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Form1.resources
+D:\DOTA\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Properties.Resources.resources
+D:\DOTA\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache

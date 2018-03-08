@@ -67,6 +67,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QuanLyBanHangDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyBanHangDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyBanHangDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyBanHangDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyBanHangDataSet5.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -120,6 +135,39 @@
     </None>
     <None Include="QuanLyBanHangDataSet2.xss">
       <DependentUpon>QuanLyBanHangDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet3.xsc">
+      <DependentUpon>QuanLyBanHangDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyBanHangDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyBanHangDataSet3.xss">
+      <DependentUpon>QuanLyBanHangDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet4.xsc">
+      <DependentUpon>QuanLyBanHangDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyBanHangDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyBanHangDataSet4.xss">
+      <DependentUpon>QuanLyBanHangDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet5.xsc">
+      <DependentUpon>QuanLyBanHangDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="QuanLyBanHangDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QuanLyBanHangDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QuanLyBanHangDataSet5.xss">
+      <DependentUpon>QuanLyBanHangDataSet5.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

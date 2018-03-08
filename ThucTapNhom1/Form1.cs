@@ -22,6 +22,8 @@ namespace ThucTapNhom1
             layncc();
             layKH();
             layPN();
+            layNVtdung();
+            layMH();
         }
         // Phan Phieu Xuat
         void lockcontrol()
@@ -319,6 +321,12 @@ namespace ThucTapNhom1
         // Ket thuc Phieu Xuat
         private void Form1_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'quanLyBanHangDataSet5.SanPham' table. You can move, or remove it, as needed.
+            this.sanPhamTableAdapter1.Fill(this.quanLyBanHangDataSet5.SanPham);
+            // TODO: This line of code loads data into the 'quanLyBanHangDataSet4.NCC' table. You can move, or remove it, as needed.
+            this.nCCTableAdapter1.Fill(this.quanLyBanHangDataSet4.NCC);
+            // TODO: This line of code loads data into the 'quanLyBanHangDataSet31.NhanVien' table. You can move, or remove it, as needed.
+            this.nhanVienTableAdapter.Fill(this.quanLyBanHangDataSet31.NhanVien);
             // TODO: This line of code loads data into the 'quanLyBanHangDataSet2.NCC' table. You can move, or remove it, as needed.
             this.nCCTableAdapter.Fill(this.quanLyBanHangDataSet2.NCC);
             // TODO: This line of code loads data into the 'quanLyBanHangDataSet1.KhachHang' table. You can move, or remove it, as needed.
@@ -558,7 +566,7 @@ namespace ThucTapNhom1
             command.CommandType = CommandType.StoredProcedure;
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             DataSet tkncc = new DataSet();
-            adapter.Fill(tkncc);
+              adapter.Fill(tkncc);
             dgvNCC.DataSource = tkncc.Tables[0];
             adapter.Dispose();
             con.Close();
@@ -590,8 +598,6 @@ namespace ThucTapNhom1
             txtdcncc.Text = dgvNCC.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtsdtncc.Text = dgvNCC.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
-
-       
         // Ket Thuc Nha Cung Cap
         // Phan Nhan Vien
         void Khoatdung()
@@ -637,14 +643,6 @@ namespace ThucTapNhom1
                 }
             }
         }
-        private void dgvnvtdung_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtidnvtd.Text = dgvnvtdung.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txttennvtd.Text = dgvnvtdung.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtcanvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtdcnvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[3].Value.ToString();
-            txtsdtnvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[4].Value.ToString();
-        }
         void Tusinhmatdung()
         {
             SqlConnection conn = new SqlConnection(connectionString);
@@ -671,7 +669,18 @@ namespace ThucTapNhom1
             }
             txtidnvtd.Text = g;
         }
-        private void cbbtimkiemtdung_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnthemnvtdung_Click_1(object sender, EventArgs e)
+        {
+            Tusinhmatdung();
+            flag = "add";
+            Khoatdung();
+
+        }
+        private void btnbacktdung_Click_1(object sender, EventArgs e)
+        {
+            layNVtdung();
+        }
+        private void cbbtimkiemtdung_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -696,20 +705,36 @@ namespace ThucTapNhom1
                 }
             }
         }
-        private void btnthemnvtdung_Click(object sender, EventArgs e)
+        private void btntimkiemtdung_Click_1(object sender, EventArgs e)
         {
-            Tusinhmatdung();
-            flag = "add";
-            Khoatdung();
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand("TimNV", con);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@Ca", "%" + cbbtimkiemtdung.Text + "%");
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dsNV = new DataSet();
+                adapter.Fill(dsNV);
+                dgvnvtdung.DataSource = dsNV.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+
+            }
         }
-        private void btnsuanvtdung_Click(object sender, EventArgs e)
+        private void btnsuanvtdung_Click_1(object sender, EventArgs e)
         {
             flag = "edit";
             Khoatdung();
         }
-        private void btnxoanvtdung_Click(object sender, EventArgs e)
+        private void btnxoanvtdung_Click_1(object sender, EventArgs e)
         {
-
             {
                 SqlConnection conn = new SqlConnection(connectionString);
 
@@ -737,7 +762,7 @@ namespace ThucTapNhom1
                 }
             }
         }
-        private void btnluunvtdung_Click(object sender, EventArgs e)
+        private void btnluunvtdung_Click_1(object sender, EventArgs e)
         {
             if (flag == "edit")
             {
@@ -812,37 +837,19 @@ namespace ThucTapNhom1
             }
             Khoahongtdung();
         }
-        private void btnhuynvtdung_Click(object sender, EventArgs e)
+        private void btnhuynvtdung_Click_1(object sender, EventArgs e)
         {
             Khoahongtdung();
         }
-        private void btntimkiemtdung_Click(object sender, EventArgs e)
+        private void dgvnvtdung_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            SqlConnection con = new SqlConnection(connectionString);
-            try
-            {
-                con.Open();
-                SqlCommand command = new SqlCommand("TimNV", con);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@Ca", "%" + cbbtimkiemtdung.Text + "%");
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataSet dsNV = new DataSet();
-                adapter.Fill(dsNV);
-                dgvnvtdung.DataSource = dsNV.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-
-            }
+            txtidnvtd.Text = dgvnvtdung.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txttennvtd.Text = dgvnvtdung.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtcanvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtdcnvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txtsdtnvtdung.Text = dgvnvtdung.Rows[e.RowIndex].Cells[4].Value.ToString();
         }
-        private void btnbacktdung_Click(object sender, EventArgs e)
-        {
-            layNVtdung();
-        }
+ 
         // Ket Thuc Phan Nhan Vien
         // Phan San Pham
         void Khoamh()
@@ -919,51 +926,18 @@ namespace ThucTapNhom1
                 }
             }
         }
-        private void dgvspmh_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtidmh.Text = dgvspmh.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txttenmh.Text = dgvspmh.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtnguongmh.Text = dgvspmh.Rows[e.RowIndex].Cells[2].Value.ToString();
-            cbbidnccmh.Text = dgvspmh.Rows[e.RowIndex].Cells[3].Value.ToString();
-        }
-        void Tusinhmamh()
-        {
-            SqlConnection conn = new SqlConnection(connectionString);
-            string sqlSelect = "ShowSP";
-            SqlCommand cmd = new SqlCommand(sqlSelect, conn);
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable dssp = new DataTable();
-            adapter.Fill(dssp);
-            string g = "";
-            if (dssp.Rows.Count <= 0)
-            {
-                g = "MH01";
-            }
-            else
-            {
-                int k;
-                g = "MH";
-                k = Convert.ToInt32(dssp.Rows[dssp.Rows.Count - 1][0].ToString().Substring(2, 2));
-                k = k + 1;
-                if (k < 10)
-                    g = g + "0";
-                g = g + k.ToString();
-            }
-            txtidmh.Text = g;
-        }
-        private void btnthemmh_Click(object sender, EventArgs e)
+        private void btnthemmh_Click_1(object sender, EventArgs e)
         {
             Tusinhmamh();
             flag = "add";
             Khoamh();
         }
-        private void btnsuamh_Click(object sender, EventArgs e)
+        private void btnsuamh_Click_1(object sender, EventArgs e)
         {
             flag = "edit";
             Khoamh();
         }
-        private void btnxoamh_Click(object sender, EventArgs e)
+        private void btnxoamh_Click_1(object sender, EventArgs e)
         {
             {
                 SqlConnection conn = new SqlConnection(connectionString);
@@ -992,7 +966,7 @@ namespace ThucTapNhom1
                 }
             }
         }
-        private void btnluumh_Click(object sender, EventArgs e)
+        private void btnluumh_Click_1(object sender, EventArgs e)
         {
             if (flag == "edit")
             {
@@ -1067,7 +1041,7 @@ namespace ThucTapNhom1
             }
             KhoaHongmh();
         }
-        private void btntimkiemmh_Click(object sender, EventArgs e)
+        private void btntimkiemmh_Click_1(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -1092,14 +1066,52 @@ namespace ThucTapNhom1
                 }
             }
         }
-        private void btnctspmh_Click(object sender, EventArgs e)
+        private void btnctspmh_Click_1(object sender, EventArgs e)
         {
             layCTSP();
         }
-        private void btntrangchumh_Click(object sender, EventArgs e)
+        private void btntrangchumh_Click_1(object sender, EventArgs e)
         {
             layMH();
         }
+        private void dgvspmh_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            txtidmh.Text = dgvspmh.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txttenmh.Text = dgvspmh.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtnguongmh.Text = dgvspmh.Rows[e.RowIndex].Cells[2].Value.ToString();
+            cbbidnccmh.Text = dgvspmh.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
+        private void btnhuymh_Click(object sender, EventArgs e)
+        {
+            KhoaHongmh();
+        }
+        void Tusinhmamh()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            string sqlSelect = "ShowSP";
+            SqlCommand cmd = new SqlCommand(sqlSelect, conn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dssp = new DataTable();
+            adapter.Fill(dssp);
+            string g = "";
+            if (dssp.Rows.Count <= 0)
+            {
+                g = "MH01";
+            }
+            else
+            {
+                int k;
+                g = "MH";
+                k = Convert.ToInt32(dssp.Rows[dssp.Rows.Count - 1][0].ToString().Substring(2, 2));
+                k = k + 1;
+                if (k < 10)
+                    g = g + "0";
+                g = g + k.ToString();
+            }
+            txtidmh.Text = g;
+        }
+
         // Ket Thuc Phan San Pham
         // Phan Phieu Nhap
         void layPN()
@@ -1126,12 +1138,10 @@ namespace ThucTapNhom1
             adapter.Dispose();
             dgvThongKe.Visible = true;
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             layPN();
         }
-
         private void btnChuyenKhoan_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(connectionString);
@@ -1143,7 +1153,6 @@ namespace ThucTapNhom1
             adapter.Fill(dsnv);
             dgvPhieuNhap.DataSource = dsnv.Tables[0];
         }
-
         private void btnTrucTiep_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection(connectionString);
@@ -1156,6 +1165,7 @@ namespace ThucTapNhom1
             dgvPhieuNhap.DataSource = dsnv.Tables[0];
         }
         // Ket Thuc Phan Phieu Nhap
+
         // Phan Khach Hang
 
          void layKH()
@@ -1300,14 +1310,12 @@ namespace ThucTapNhom1
             lockcontrolKH();
             flag = "add";
         }
-
         private void btnsuakh_Click(object sender, EventArgs e)
         {
             txtidkh.ReadOnly = true;
             lockcontrolKH();
             flag = "edit";
         }
-
         private void btnxoakh_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Bạn có thực sự muốn xóa ?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -1329,19 +1337,16 @@ namespace ThucTapNhom1
                 suaKH();
             }
         }
-
         private void btnhuykh_Click(object sender, EventArgs e)
         {
             txtidkh.ReadOnly = false;
             unlockcontrolKH();
         }
-
         private void btnlammoi_Click(object sender, EventArgs e)
         {
              txtidkh.ReadOnly = false;
              unlockcontrolKH();
         }
-
         private void btntimkiemkh_Click(object sender, EventArgs e)
         {
              using (SqlConnection con = new SqlConnection(connectionString))
@@ -1367,7 +1372,6 @@ namespace ThucTapNhom1
                 }
             }
         }
-
         private void dgvdskh_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
              txtidkh.Text = dgvdskh.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -1376,9 +1380,6 @@ namespace ThucTapNhom1
             txtsdtkh.Text = dgvdskh.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
 
-      
-
-       
         // Ket Thuc Phan Khach Hang
     }
 
