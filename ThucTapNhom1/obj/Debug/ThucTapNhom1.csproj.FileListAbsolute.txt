@@ -17,3 +17,12 @@ D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csprojResolveAssemblyReference.cache
 D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Form1.resources
 D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Properties.Resources.resources
 D:\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe.config
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.exe
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.pdb
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.exe
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\bin\Debug\ThucTapNhom1.pdb
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csprojResolveAssemblyReference.cache
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Form1.resources
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.Properties.Resources.resources
+C:\Users\Alienware\Desktop\TTN\TTN\ThucTapNhom1\obj\Debug\ThucTapNhom1.csproj.GenerateResource.Cache

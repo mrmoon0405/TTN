@@ -588,6 +588,8 @@ namespace ThucTapNhom1
             txtdcncc.Text = dgvNCC.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtsdtncc.Text = dgvNCC.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
+
+       
         // Ket Thuc Nha Cung Cap
         // Phan Nhan Vien
         // Ket Thuc Phan Nhan Vien
@@ -596,11 +598,226 @@ namespace ThucTapNhom1
         // Phan Phieu Nhap
         // Ket Thuc Phan Phieu Nhap
         // Phan Khach Hang
+
+         void layKH()
+        {
+            SqlConnection con = new SqlConnection(connectionString);
+            try
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand();
+                command.Connection = con;
+                command.CommandText = "HTKH";
+                command.CommandType = CommandType.StoredProcedure;
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                DataSet dsKhachHang = new DataSet();
+                adapter.Fill(dsKhachHang);
+                dgvdskh.DataSource = dsKhachHang.Tables[0];
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (con != null)
+                {
+                    con.Close();
+                }
+            }
+        }
+         void lockcontrolKH()
+        {
+            btnthemKH.Enabled = false;
+            btnsuakh.Enabled = false;
+            btnxoakh.Enabled = false;
+            btnluukh.Enabled = true;
+            btnhuykh.Enabled = true;
+        }
+         void unlockcontrolKH()
+        {
+            btnthemKH.Enabled = true;
+            btnsuakh.Enabled = true;
+            btnxoakh.Enabled = true;
+            btnluukh.Enabled = false;
+            btnhuykh.Enabled = false;
+        }
+         void themKH()
+
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                {
+                    if (txttenkh.Text == "")
+                        MessageBox.Show("Bạn Chưa Nhập Tên");
+                    if (txtdckh.Text == "")
+                        MessageBox.Show("Bạn Chưa Nhập Địa Chỉ");
+                    if (txtsdtkh.Text == "")
+                        MessageBox.Show("Bạn Chưa Nhập SĐT");
+                    if (txtsdtkh.Text != "" && txtdckh.Text != "" && txttenkh.Text != "")
+                    {
+                        con.Open();
+                        SqlCommand command = new SqlCommand("AddKH", con);
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@idkhachhang", txtidkh.Text);
+                        command.Parameters.AddWithValue("@tenkh", txttenkh.Text);
+                        command.Parameters.AddWithValue("@DC", txtdckh.Text);
+                        command.Parameters.AddWithValue("@SDT", txtsdtkh.Text);
+                        command.ExecuteNonQuery();
+                        layKH();
+                        con.Close();
+                        MessageBox.Show("Thêm Thành Công", "Thông Báo");
+                    }
+                }
+            }
+        }
+         void suaKH()
+        {
+
+            if (txttenkh.Text == "")
+                MessageBox.Show("Tên KH không được để trống");
+            if (txtdckh.Text == "")
+                MessageBox.Show("ĐC không được để trống");
+            if (txtsdtkh.Text == "")
+                MessageBox.Show("Địa Chỉ Không được để trống");
+            if (txtsdtkh.Text != "" && txtdckh.Text != "" && txttenkh.Text != "")
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand("UpdateKH", conn);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@idkhachhang", txtidkh.Text);
+                    command.Parameters.AddWithValue("@tenkh", txttenkh.Text);
+                    command.Parameters.AddWithValue("@DC", txtdckh.Text);
+                    command.Parameters.AddWithValue("@SDT", txtsdtkh.Text);
+                    command.ExecuteNonQuery();
+                    layKH();
+                    conn.Close();
+                    MessageBox.Show("Sửa Thành Công", "Thông Báo");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Xảy Ra Lỗi !");
+            }
+        }
+         void xoaKH()
+        {
+
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "DeleteKH";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@_idkhachhang", txtidkh.Text);
+            command.Connection = conn;
+            command.ExecuteNonQuery();
+            layKH();
+            conn.Close();
+        }
+         void autoidKH()
+        {
+            int count = 0;
+            count = dgvdskh.Rows.Count;
+            string chuoi = "";
+            int chuoi2 = 0;
+            chuoi = Convert.ToString(dgvdskh.Rows[count - 2].Cells[0].Value);
+            chuoi2 = Convert.ToInt32(chuoi.Remove(0, 2));
+            chuoi = chuoi + chuoi2.ToString();
+            chuoi = chuoi + "0";
+            if (chuoi2 + 1 < 10)
+            {
+                txtidkh.Text = "KH0" + (chuoi2 + 1).ToString();
+            }
+            else if (chuoi2 + 1 < 100)
+            {
+                txtidkh.Text = "KH" + (chuoi2 + 1).ToString();
+            }
+        }
+        private void btnthemKH_Click(object sender, EventArgs e)
+        {
+            autoidKH();
+            txtidkh.ReadOnly = true;
+            lockcontrolKH();
+            flag = "add";
+        }
+
+        private void btnsuakh_Click(object sender, EventArgs e)
+        {
+            txtidkh.ReadOnly = true;
+            lockcontrolKH();
+            flag = "edit";
+        }
+
+        private void btnxoakh_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có thực sự muốn xóa ?", "Xóa", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                xoaKH();
+                MessageBox.Show("Xóa Thành Công");
+            }
+        }
+        private void btnluukh_Click(object sender, EventArgs e)
+        {
+            txtidkh.ReadOnly = false;
+            unlockcontrolKH();
+            if (flag == "add")
+            {
+                themKH();
+            }
+            if (flag == "edit")
+            {
+                suaKH();
+            }
+        }
+
+        private void btnhuykh_Click(object sender, EventArgs e)
+        {
+            txtidkh.ReadOnly = false;
+            unlockcontrolKH();
+        }
+
+        private void btnlammoi_Click(object sender, EventArgs e)
+        {
+             txtidkh.ReadOnly = false;
+             unlockcontrolKH();
+        }
+
+        private void btntimkiemkh_Click(object sender, EventArgs e)
+        {
+             using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    SqlCommand command = new SqlCommand("findkhbyname", con);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@TenKH", "%" + txttimkiemkh.Text + "%");
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dskh = new DataSet();
+                    adapter.Fill(dskh);
+                    dgvdskh.DataSource = dskh.Tables[0];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+
+                }
+            }
+        }
+
+        private void dgvdskh_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+             txtidkh.Text = dgvdskh.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txttenkh.Text = dgvdskh.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtdckh.Text = dgvdskh.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtsdtkh.Text = dgvdskh.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
         // Ket Thuc Phan Khach Hang
-
-
-
-
-
     }
+
+        
 }
