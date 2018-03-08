@@ -1181,6 +1181,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.DarkGreen;
             this.tabPage4.Controls.Add(this.groupBox22);
             this.tabPage4.Controls.Add(this.dgvThongKe);
             this.tabPage4.Controls.Add(this.dgvPhieuNhap);
@@ -1190,38 +1191,40 @@
             this.tabPage4.Size = new System.Drawing.Size(2260, 1091);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Phiếu Nhập";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // dgvPhieuNhap
             // 
+            this.dgvPhieuNhap.BackgroundColor = System.Drawing.Color.White;
             this.dgvPhieuNhap.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPhieuNhap.Location = new System.Drawing.Point(0, 4);
+            this.dgvPhieuNhap.Location = new System.Drawing.Point(16, 16);
             this.dgvPhieuNhap.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPhieuNhap.Name = "dgvPhieuNhap";
             this.dgvPhieuNhap.RowTemplate.Height = 24;
-            this.dgvPhieuNhap.Size = new System.Drawing.Size(1097, 1065);
+            this.dgvPhieuNhap.Size = new System.Drawing.Size(1101, 1053);
             this.dgvPhieuNhap.TabIndex = 8;
             // 
             // dgvThongKe
             // 
+            this.dgvThongKe.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvThongKe.Location = new System.Drawing.Point(1153, 2);
+            this.dgvThongKe.Location = new System.Drawing.Point(1125, 16);
             this.dgvThongKe.Margin = new System.Windows.Forms.Padding(4);
             this.dgvThongKe.Name = "dgvThongKe";
             this.dgvThongKe.RowTemplate.Height = 24;
-            this.dgvThongKe.Size = new System.Drawing.Size(618, 1067);
+            this.dgvThongKe.Size = new System.Drawing.Size(681, 1053);
             this.dgvThongKe.TabIndex = 9;
             this.dgvThongKe.Visible = false;
             // 
             // btnThongKe
             // 
+            this.btnThongKe.BackColor = System.Drawing.Color.Silver;
             this.btnThongKe.Location = new System.Drawing.Point(8, 593);
             this.btnThongKe.Margin = new System.Windows.Forms.Padding(4);
             this.btnThongKe.Name = "btnThongKe";
             this.btnThongKe.Size = new System.Drawing.Size(395, 146);
             this.btnThongKe.TabIndex = 10;
             this.btnThongKe.Text = "Thống Kê";
-            this.btnThongKe.UseVisualStyleBackColor = true;
+            this.btnThongKe.UseVisualStyleBackColor = false;
             this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click_1);
             // 
             // groupBox22
@@ -1241,33 +1244,36 @@
             // 
             // btnBack
             // 
+            this.btnBack.BackColor = System.Drawing.Color.Silver;
             this.btnBack.Location = new System.Drawing.Point(34, 409);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(347, 117);
             this.btnBack.TabIndex = 2;
             this.btnBack.Text = "Trở lại";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             // 
             // btnChuyenKhoan
             // 
+            this.btnChuyenKhoan.BackColor = System.Drawing.Color.Silver;
             this.btnChuyenKhoan.Location = new System.Drawing.Point(34, 221);
             this.btnChuyenKhoan.Margin = new System.Windows.Forms.Padding(4);
             this.btnChuyenKhoan.Name = "btnChuyenKhoan";
             this.btnChuyenKhoan.Size = new System.Drawing.Size(347, 112);
             this.btnChuyenKhoan.TabIndex = 1;
             this.btnChuyenKhoan.Text = "Chuyển Khoản";
-            this.btnChuyenKhoan.UseVisualStyleBackColor = true;
+            this.btnChuyenKhoan.UseVisualStyleBackColor = false;
             // 
             // btnTrucTiep
             // 
+            this.btnTrucTiep.BackColor = System.Drawing.Color.Silver;
             this.btnTrucTiep.Location = new System.Drawing.Point(34, 52);
             this.btnTrucTiep.Margin = new System.Windows.Forms.Padding(4);
             this.btnTrucTiep.Name = "btnTrucTiep";
             this.btnTrucTiep.Size = new System.Drawing.Size(347, 104);
             this.btnTrucTiep.TabIndex = 0;
             this.btnTrucTiep.Text = "Trực Tiếp";
-            this.btnTrucTiep.UseVisualStyleBackColor = true;
+            this.btnTrucTiep.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
