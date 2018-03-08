@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvkhpx = new System.Windows.Forms.DataGridView();
@@ -120,6 +121,8 @@
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.btntimkiemkh = new System.Windows.Forms.Button();
             this.txttimkiemkh = new System.Windows.Forms.TextBox();
+            this.quanLyBanHangDataSet3 = new ThucTapNhom1.QuanLyBanHangDataSet();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvkhpx)).BeginInit();
@@ -145,6 +148,7 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvdskh)).BeginInit();
             this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -894,6 +898,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox6);
             this.tabPage3.Controls.Add(this.groupBox10);
             this.tabPage3.Controls.Add(this.dgvdskh);
             this.tabPage3.Controls.Add(this.groupBox4);
@@ -903,11 +908,12 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(2260, 1091);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Khách Hàng";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
+            this.groupBox5.BackColor = System.Drawing.Color.DarkGreen;
             this.groupBox5.Controls.Add(this.txttenkh);
             this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Controls.Add(this.label10);
@@ -920,24 +926,24 @@
             this.groupBox5.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox5.Size = new System.Drawing.Size(1251, 338);
+            this.groupBox5.Size = new System.Drawing.Size(1241, 347);
             this.groupBox5.TabIndex = 17;
             this.groupBox5.TabStop = false;
             // 
             // txttenkh
             // 
-            this.txttenkh.Location = new System.Drawing.Point(154, 190);
+            this.txttenkh.Location = new System.Drawing.Point(97, 155);
             this.txttenkh.Margin = new System.Windows.Forms.Padding(6);
             this.txttenkh.Name = "txttenkh";
-            this.txttenkh.Size = new System.Drawing.Size(320, 31);
+            this.txttenkh.Size = new System.Drawing.Size(404, 31);
             this.txttenkh.TabIndex = 2;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.BackColor = System.Drawing.Color.Silver;
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(32, 202);
+            this.label9.Location = new System.Drawing.Point(32, 158);
             this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 25);
@@ -947,9 +953,9 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.BackColor = System.Drawing.Color.Silver;
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(584, 79);
+            this.label10.Location = new System.Drawing.Point(584, 71);
             this.label10.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 25);
@@ -959,9 +965,9 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.White;
+            this.label11.BackColor = System.Drawing.Color.Silver;
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(584, 196);
+            this.label11.Location = new System.Drawing.Point(584, 158);
             this.label11.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 25);
@@ -973,13 +979,13 @@
             this.txtidkh.Location = new System.Drawing.Point(97, 65);
             this.txtidkh.Margin = new System.Windows.Forms.Padding(6);
             this.txtidkh.Name = "txtidkh";
-            this.txtidkh.Size = new System.Drawing.Size(320, 31);
+            this.txtidkh.Size = new System.Drawing.Size(404, 31);
             this.txtidkh.TabIndex = 1;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.White;
+            this.label12.BackColor = System.Drawing.Color.Silver;
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(32, 68);
             this.label12.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
@@ -993,35 +999,37 @@
             this.txtdckh.Location = new System.Drawing.Point(732, 65);
             this.txtdckh.Margin = new System.Windows.Forms.Padding(6);
             this.txtdckh.Name = "txtdckh";
-            this.txtdckh.Size = new System.Drawing.Size(292, 31);
+            this.txtdckh.Size = new System.Drawing.Size(424, 31);
             this.txtdckh.TabIndex = 3;
             // 
             // txtsdtkh
             // 
-            this.txtsdtkh.Location = new System.Drawing.Point(732, 196);
+            this.txtsdtkh.Location = new System.Drawing.Point(732, 155);
             this.txtsdtkh.Margin = new System.Windows.Forms.Padding(6);
             this.txtsdtkh.Name = "txtsdtkh";
-            this.txtsdtkh.Size = new System.Drawing.Size(292, 31);
+            this.txtsdtkh.Size = new System.Drawing.Size(424, 31);
             this.txtsdtkh.TabIndex = 4;
             // 
             // groupBox4
             // 
+            this.groupBox4.BackColor = System.Drawing.Color.DarkGreen;
             this.groupBox4.Controls.Add(this.btnlammoi);
             this.groupBox4.Controls.Add(this.btnsuakh);
             this.groupBox4.Controls.Add(this.btnthemKH);
             this.groupBox4.Controls.Add(this.btnhuykh);
             this.groupBox4.Controls.Add(this.btnxoakh);
             this.groupBox4.Controls.Add(this.btnluukh);
-            this.groupBox4.Location = new System.Drawing.Point(1253, 9);
+            this.groupBox4.Location = new System.Drawing.Point(1251, 0);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox4.Size = new System.Drawing.Size(1007, 338);
+            this.groupBox4.Size = new System.Drawing.Size(1009, 347);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             // 
             // btnlammoi
             // 
+            this.btnlammoi.BackColor = System.Drawing.Color.Silver;
             this.btnlammoi.ForeColor = System.Drawing.Color.Red;
             this.btnlammoi.Location = new System.Drawing.Point(538, 202);
             this.btnlammoi.Margin = new System.Windows.Forms.Padding(6);
@@ -1029,11 +1037,12 @@
             this.btnlammoi.Size = new System.Drawing.Size(208, 83);
             this.btnlammoi.TabIndex = 14;
             this.btnlammoi.Text = "Làm Mới";
-            this.btnlammoi.UseVisualStyleBackColor = true;
+            this.btnlammoi.UseVisualStyleBackColor = false;
             this.btnlammoi.Click += new System.EventHandler(this.btnlammoi_Click);
             // 
             // btnsuakh
             // 
+            this.btnsuakh.BackColor = System.Drawing.Color.Silver;
             this.btnsuakh.ForeColor = System.Drawing.Color.Crimson;
             this.btnsuakh.Location = new System.Drawing.Point(116, 119);
             this.btnsuakh.Margin = new System.Windows.Forms.Padding(6);
@@ -1041,11 +1050,12 @@
             this.btnsuakh.Size = new System.Drawing.Size(210, 77);
             this.btnsuakh.TabIndex = 10;
             this.btnsuakh.Text = "Sửa";
-            this.btnsuakh.UseVisualStyleBackColor = true;
+            this.btnsuakh.UseVisualStyleBackColor = false;
             this.btnsuakh.Click += new System.EventHandler(this.btnsuakh_Click);
             // 
             // btnthemKH
             // 
+            this.btnthemKH.BackColor = System.Drawing.Color.Silver;
             this.btnthemKH.ForeColor = System.Drawing.Color.Cyan;
             this.btnthemKH.Location = new System.Drawing.Point(116, 42);
             this.btnthemKH.Margin = new System.Windows.Forms.Padding(6);
@@ -1053,11 +1063,12 @@
             this.btnthemKH.Size = new System.Drawing.Size(210, 65);
             this.btnthemKH.TabIndex = 9;
             this.btnthemKH.Text = "Thêm";
-            this.btnthemKH.UseVisualStyleBackColor = true;
+            this.btnthemKH.UseVisualStyleBackColor = false;
             this.btnthemKH.Click += new System.EventHandler(this.btnthemKH_Click);
             // 
             // btnhuykh
             // 
+            this.btnhuykh.BackColor = System.Drawing.Color.Silver;
             this.btnhuykh.ForeColor = System.Drawing.Color.Lime;
             this.btnhuykh.Location = new System.Drawing.Point(538, 119);
             this.btnhuykh.Margin = new System.Windows.Forms.Padding(6);
@@ -1070,6 +1081,7 @@
             // 
             // btnxoakh
             // 
+            this.btnxoakh.BackColor = System.Drawing.Color.Silver;
             this.btnxoakh.ForeColor = System.Drawing.Color.Yellow;
             this.btnxoakh.Location = new System.Drawing.Point(116, 202);
             this.btnxoakh.Margin = new System.Windows.Forms.Padding(6);
@@ -1077,18 +1089,19 @@
             this.btnxoakh.Size = new System.Drawing.Size(210, 83);
             this.btnxoakh.TabIndex = 11;
             this.btnxoakh.Text = "Xóa";
-            this.btnxoakh.UseVisualStyleBackColor = true;
+            this.btnxoakh.UseVisualStyleBackColor = false;
             this.btnxoakh.Click += new System.EventHandler(this.btnxoakh_Click);
             // 
             // btnluukh
             // 
+            this.btnluukh.BackColor = System.Drawing.Color.Silver;
             this.btnluukh.Location = new System.Drawing.Point(538, 42);
             this.btnluukh.Margin = new System.Windows.Forms.Padding(6);
             this.btnluukh.Name = "btnluukh";
             this.btnluukh.Size = new System.Drawing.Size(208, 67);
             this.btnluukh.TabIndex = 12;
             this.btnluukh.Text = "Lưu";
-            this.btnluukh.UseVisualStyleBackColor = true;
+            this.btnluukh.UseVisualStyleBackColor = false;
             this.btnluukh.Click += new System.EventHandler(this.btnluukh_Click);
             // 
             // dgvdskh
@@ -1096,31 +1109,31 @@
             this.dgvdskh.BackgroundColor = System.Drawing.Color.White;
             this.dgvdskh.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvdskh.GridColor = System.Drawing.SystemColors.ButtonFace;
-            this.dgvdskh.Location = new System.Drawing.Point(0, 341);
+            this.dgvdskh.Location = new System.Drawing.Point(0, 351);
             this.dgvdskh.Margin = new System.Windows.Forms.Padding(6);
             this.dgvdskh.Name = "dgvdskh";
-            this.dgvdskh.Size = new System.Drawing.Size(1241, 728);
+            this.dgvdskh.Size = new System.Drawing.Size(1241, 740);
             this.dgvdskh.TabIndex = 19;
             this.dgvdskh.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvdskh_CellContentClick);
             // 
             // groupBox10
             // 
-            this.groupBox10.BackColor = System.Drawing.Color.White;
+            this.groupBox10.BackColor = System.Drawing.Color.DarkGreen;
             this.groupBox10.Controls.Add(this.btntimkiemkh);
             this.groupBox10.Controls.Add(this.txttimkiemkh);
-            this.groupBox10.Location = new System.Drawing.Point(1251, 374);
+            this.groupBox10.Location = new System.Drawing.Point(1244, 351);
             this.groupBox10.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox10.Name = "groupBox10";
             this.groupBox10.Padding = new System.Windows.Forms.Padding(6);
-            this.groupBox10.Size = new System.Drawing.Size(1009, 224);
+            this.groupBox10.Size = new System.Drawing.Size(1016, 247);
             this.groupBox10.TabIndex = 22;
             this.groupBox10.TabStop = false;
             // 
             // btntimkiemkh
             // 
-            this.btntimkiemkh.BackColor = System.Drawing.Color.White;
+            this.btntimkiemkh.BackColor = System.Drawing.Color.Silver;
             this.btntimkiemkh.ForeColor = System.Drawing.Color.Gold;
-            this.btntimkiemkh.Location = new System.Drawing.Point(496, 65);
+            this.btntimkiemkh.Location = new System.Drawing.Point(661, 82);
             this.btntimkiemkh.Margin = new System.Windows.Forms.Padding(6);
             this.btntimkiemkh.Name = "btntimkiemkh";
             this.btntimkiemkh.Size = new System.Drawing.Size(208, 77);
@@ -1131,11 +1144,27 @@
             // 
             // txttimkiemkh
             // 
-            this.txttimkiemkh.Location = new System.Drawing.Point(116, 87);
+            this.txttimkiemkh.Location = new System.Drawing.Point(133, 105);
             this.txttimkiemkh.Margin = new System.Windows.Forms.Padding(6);
             this.txttimkiemkh.Name = "txttimkiemkh";
-            this.txttimkiemkh.Size = new System.Drawing.Size(260, 31);
+            this.txttimkiemkh.Size = new System.Drawing.Size(464, 31);
             this.txttimkiemkh.TabIndex = 19;
+            // 
+            // quanLyBanHangDataSet3
+            // 
+            this.quanLyBanHangDataSet3.DataSetName = "QuanLyBanHangDataSet";
+            this.quanLyBanHangDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.Color.DarkGreen;
+            this.groupBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("groupBox6.BackgroundImage")));
+            this.groupBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.groupBox6.Location = new System.Drawing.Point(1244, 596);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(1016, 495);
+            this.groupBox6.TabIndex = 23;
+            this.groupBox6.TabStop = false;
             // 
             // Form1
             // 
@@ -1178,6 +1207,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvdskh)).EndInit();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1275,6 +1305,8 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtdckh;
         private System.Windows.Forms.TextBox txtsdtkh;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private QuanLyBanHangDataSet quanLyBanHangDataSet3;
     }
 }
 

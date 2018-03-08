@@ -20,6 +20,7 @@ namespace ThucTapNhom1
             InitializeComponent();
             layPX();
             layncc();
+            layKH();
         }
         // Phan Phieu Xuat
         void lockcontrol()
