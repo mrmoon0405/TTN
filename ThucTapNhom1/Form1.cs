@@ -121,16 +121,31 @@ namespace ThucTapNhom1
         }
         void xoaPX()
         {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "DeletePX";
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idpx", txtidpx.Text);
-            command.Connection = conn;
-            command.ExecuteNonQuery();
-            conn.Close();
-            layPX();
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                try
+                {
+                    conn.Open();
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = "DeletePX";
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@_idPX", txtidpx.Text);
+                    command.Connection = conn;
+                    command.ExecuteNonQuery();
+                    layPX();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    if (conn != null)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
         }
         void autoid()
         {
