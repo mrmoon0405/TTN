@@ -53,7 +53,6 @@
             this.quanLyBanHangDataSet = new ThucTapNhom1.QuanLyBanHangDataSet();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txttenpx = new System.Windows.Forms.TextBox();
-            this.cbbfind2 = new System.Windows.Forms.ComboBox();
             this.cbbidkhpx = new System.Windows.Forms.ComboBox();
             this.khachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quanLyBanHangDataSet1 = new ThucTapNhom1.QuanLyBanHangDataSet1();
@@ -134,6 +133,8 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.btntimkiemtdung = new System.Windows.Forms.Button();
             this.cbbtimkiemtdung = new System.Windows.Forms.ComboBox();
+            this.nhanVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.quanLyBanHangDataSet31 = new ThucTapNhom1.QuanLyBanHangDataSet3();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.btnthemnvtdung = new System.Windows.Forms.Button();
@@ -163,6 +164,8 @@
             this.btntimkiemmh = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.cbtimkiemmh = new System.Windows.Forms.ComboBox();
+            this.sanPhamBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.quanLyBanHangDataSet5 = new ThucTapNhom1.QuanLyBanHangDataSet5();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.btnhuymh = new System.Windows.Forms.Button();
             this.btnluumh = new System.Windows.Forms.Button();
@@ -171,6 +174,8 @@
             this.btnthemmh = new System.Windows.Forms.Button();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
             this.cbbidnccmh = new System.Windows.Forms.ComboBox();
+            this.nCCBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.quanLyBanHangDataSet4 = new ThucTapNhom1.QuanLyBanHangDataSet4();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.txtnguongmh = new System.Windows.Forms.TextBox();
@@ -182,14 +187,8 @@
             this.khachHangTableAdapter = new ThucTapNhom1.QuanLyBanHangDataSet1TableAdapters.KhachHangTableAdapter();
             this.nCCTableAdapter = new ThucTapNhom1.QuanLyBanHangDataSet2TableAdapters.NCCTableAdapter();
             this.quanLyBanHangDataSet3 = new ThucTapNhom1.QuanLyBanHangDataSet();
-            this.quanLyBanHangDataSet31 = new ThucTapNhom1.QuanLyBanHangDataSet3();
-            this.nhanVienBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nhanVienTableAdapter = new ThucTapNhom1.QuanLyBanHangDataSet3TableAdapters.NhanVienTableAdapter();
-            this.quanLyBanHangDataSet4 = new ThucTapNhom1.QuanLyBanHangDataSet4();
-            this.nCCBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.nCCTableAdapter1 = new ThucTapNhom1.QuanLyBanHangDataSet4TableAdapters.NCCTableAdapter();
-            this.quanLyBanHangDataSet5 = new ThucTapNhom1.QuanLyBanHangDataSet5();
-            this.sanPhamBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.sanPhamTableAdapter1 = new ThucTapNhom1.QuanLyBanHangDataSet5TableAdapters.SanPhamTableAdapter();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -224,6 +223,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvnvtdung)).BeginInit();
             this.groupBox11.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet31)).BeginInit();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.tabPage6.SuspendLayout();
@@ -232,15 +233,13 @@
             this.groupBox17.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.groupBox14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet5)).BeginInit();
             this.groupBox13.SuspendLayout();
             this.groupBox12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet31)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nCCBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -465,7 +464,6 @@
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox3.Controls.Add(this.txttenpx);
-            this.groupBox3.Controls.Add(this.cbbfind2);
             this.groupBox3.Controls.Add(this.cbbidkhpx);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.dtpngaypx);
@@ -489,16 +487,6 @@
             this.txttenpx.Name = "txttenpx";
             this.txttenpx.Size = new System.Drawing.Size(133, 20);
             this.txttenpx.TabIndex = 25;
-            // 
-            // cbbfind2
-            // 
-            this.cbbfind2.DisplayMember = "NgayBan";
-            this.cbbfind2.FormattingEnabled = true;
-            this.cbbfind2.Location = new System.Drawing.Point(64, 138);
-            this.cbbfind2.Name = "cbbfind2";
-            this.cbbfind2.Size = new System.Drawing.Size(121, 21);
-            this.cbbfind2.TabIndex = 23;
-            this.cbbfind2.ValueMember = "NgayBan";
             // 
             // cbbidkhpx
             // 
@@ -615,7 +603,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(777, 501);
+            this.tabPage2.Size = new System.Drawing.Size(1305, 576);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "NCC";
             // 
@@ -921,7 +909,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage3.Size = new System.Drawing.Size(777, 501);
+            this.tabPage3.Size = new System.Drawing.Size(1305, 576);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Khách Hàng";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1165,7 +1153,7 @@
             this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage4.Size = new System.Drawing.Size(777, 501);
+            this.tabPage4.Size = new System.Drawing.Size(1305, 576);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Phiếu Nhập";
             // 
@@ -1263,7 +1251,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(777, 501);
+            this.tabPage5.Size = new System.Drawing.Size(1305, 576);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Nhân Viên";
             // 
@@ -1333,6 +1321,16 @@
             this.cbbtimkiemtdung.Size = new System.Drawing.Size(205, 21);
             this.cbbtimkiemtdung.TabIndex = 6;
             this.cbbtimkiemtdung.SelectedIndexChanged += new System.EventHandler(this.cbbtimkiemtdung_SelectedIndexChanged_1);
+            // 
+            // nhanVienBindingSource
+            // 
+            this.nhanVienBindingSource.DataMember = "NhanVien";
+            this.nhanVienBindingSource.DataSource = this.quanLyBanHangDataSet31;
+            // 
+            // quanLyBanHangDataSet31
+            // 
+            this.quanLyBanHangDataSet31.DataSetName = "QuanLyBanHangDataSet3";
+            this.quanLyBanHangDataSet31.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label24
             // 
@@ -1526,7 +1524,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(777, 501);
+            this.tabPage6.Size = new System.Drawing.Size(1305, 576);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Sản Phẩm";
             // 
@@ -1637,6 +1635,16 @@
             this.cbtimkiemmh.TabIndex = 6;
             this.cbtimkiemmh.ValueMember = "TenHang";
             // 
+            // sanPhamBindingSource1
+            // 
+            this.sanPhamBindingSource1.DataMember = "SanPham";
+            this.sanPhamBindingSource1.DataSource = this.quanLyBanHangDataSet5;
+            // 
+            // quanLyBanHangDataSet5
+            // 
+            this.quanLyBanHangDataSet5.DataSetName = "QuanLyBanHangDataSet5";
+            this.quanLyBanHangDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // groupBox13
             // 
             this.groupBox13.BackColor = System.Drawing.Color.Wheat;
@@ -1736,6 +1744,16 @@
             this.cbbidnccmh.TabIndex = 11;
             this.cbbidnccmh.ValueMember = "idNCC";
             // 
+            // nCCBindingSource1
+            // 
+            this.nCCBindingSource1.DataMember = "NCC";
+            this.nCCBindingSource1.DataSource = this.quanLyBanHangDataSet4;
+            // 
+            // quanLyBanHangDataSet4
+            // 
+            this.quanLyBanHangDataSet4.DataSetName = "QuanLyBanHangDataSet4";
+            this.quanLyBanHangDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -1810,43 +1828,13 @@
             this.quanLyBanHangDataSet3.DataSetName = "QuanLyBanHangDataSet";
             this.quanLyBanHangDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // quanLyBanHangDataSet31
-            // 
-            this.quanLyBanHangDataSet31.DataSetName = "QuanLyBanHangDataSet3";
-            this.quanLyBanHangDataSet31.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nhanVienBindingSource
-            // 
-            this.nhanVienBindingSource.DataMember = "NhanVien";
-            this.nhanVienBindingSource.DataSource = this.quanLyBanHangDataSet31;
-            // 
             // nhanVienTableAdapter
             // 
             this.nhanVienTableAdapter.ClearBeforeFill = true;
             // 
-            // quanLyBanHangDataSet4
-            // 
-            this.quanLyBanHangDataSet4.DataSetName = "QuanLyBanHangDataSet4";
-            this.quanLyBanHangDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nCCBindingSource1
-            // 
-            this.nCCBindingSource1.DataMember = "NCC";
-            this.nCCBindingSource1.DataSource = this.quanLyBanHangDataSet4;
-            // 
             // nCCTableAdapter1
             // 
             this.nCCTableAdapter1.ClearBeforeFill = true;
-            // 
-            // quanLyBanHangDataSet5
-            // 
-            this.quanLyBanHangDataSet5.DataSetName = "QuanLyBanHangDataSet5";
-            this.quanLyBanHangDataSet5.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // sanPhamBindingSource1
-            // 
-            this.sanPhamBindingSource1.DataMember = "SanPham";
-            this.sanPhamBindingSource1.DataSource = this.quanLyBanHangDataSet5;
             // 
             // sanPhamTableAdapter1
             // 
@@ -1901,6 +1889,8 @@
             this.groupBox11.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet31)).EndInit();
             this.groupBox8.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -1911,16 +1901,14 @@
             this.groupBox15.ResumeLayout(false);
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet5)).EndInit();
             this.groupBox13.ResumeLayout(false);
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet31)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nhanVienBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nCCBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sanPhamBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quanLyBanHangDataSet3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1948,7 +1936,6 @@
         private System.Windows.Forms.ComboBox cbbfindpx;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txttenpx;
-        private System.Windows.Forms.ComboBox cbbfind2;
         private System.Windows.Forms.ComboBox cbbidkhpx;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker dtpngaypx;
