@@ -1,0 +1,860 @@
+USE [master]
+GO
+/****** Object:  Database [QuanLyBanHang]    Script Date: 3/11/2018 2:17:17 PM ******/
+CREATE DATABASE [QuanLyBanHang] ON  PRIMARY 
+( NAME = N'QuanLyBanHang', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\QuanLyBanHang.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'QuanLyBanHang_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.SQLEXPRESS\MSSQL\DATA\QuanLyBanHang_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [QuanLyBanHang].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [QuanLyBanHang] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET AUTO_CREATE_STATISTICS ON 
+GO
+ALTER DATABASE [QuanLyBanHang] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [QuanLyBanHang] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [QuanLyBanHang] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [QuanLyBanHang] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [QuanLyBanHang] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [QuanLyBanHang] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [QuanLyBanHang] SET  MULTI_USER 
+GO
+ALTER DATABASE [QuanLyBanHang] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [QuanLyBanHang] SET DB_CHAINING OFF 
+GO
+USE [QuanLyBanHang]
+GO
+/****** Object:  StoredProcedure [dbo].[AddKH]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create proc [dbo].[AddKH]
+@idkhachhang char(10),
+@tenkh nvarchar (50),
+@DC nvarchar(50),
+@SDT int
+as
+INSERT INTO KhachHang(idkhachhang ,tenkh , DC ,SDT)values (@idkhachhang , @tenkh , @DC , @SDT);
+GO
+/****** Object:  StoredProcedure [dbo].[ChuyenKhoan]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ChuyenKhoan]
+as
+select *from PhieuNhap where HTTT != 'Truc Tiep'
+GO
+/****** Object:  StoredProcedure [dbo].[DeleteKH]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[DeleteKH]
+@_idkhachhang char(10)
+as
+DELETE FROM KhachHang WHERE idkhachhang=@_idkhachhang
+GO
+/****** Object:  StoredProcedure [dbo].[DeletePX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[DeletePX]
+@idpx char(10)
+as
+DELETE FROM PhieuXuat WHERE idPX = @idpx
+GO
+/****** Object:  StoredProcedure [dbo].[findkhbyname]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[findkhbyname]
+@TenKH nvarchar(50)
+as
+select * from KhachHang where tenkh like @TenKH 
+GO
+/****** Object:  StoredProcedure [dbo].[HTKH]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[HTKH]
+as
+select *from KhachHang
+GO
+/****** Object:  StoredProcedure [dbo].[HTNV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[HTNV]
+as
+select *from NhanVien
+GO
+/****** Object:  StoredProcedure [dbo].[HTPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[HTPX]
+as
+select *from PhieuXuat
+GO
+/****** Object:  StoredProcedure [dbo].[PX0HN]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[PX0HN]
+as
+select idPX , TenHang , idkhachhang
+from PhieuXuat PX
+where EXISTS (
+select * from KhachHang
+where idkhachhang = PX.idkhachhang and DC != 'Ha Noi'
+)
+GO
+/****** Object:  StoredProcedure [dbo].[PXHN]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[PXHN]
+as
+select idPX , TenHang , idkhachhang
+from PhieuXuat PX
+where EXISTS (
+select * from KhachHang
+where idkhachhang = PX.idkhachhang and DC = 'Ha Noi'
+)
+GO
+/****** Object:  StoredProcedure [dbo].[QuocTe]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[QuocTe]
+as
+select *from NCC where DC != 'Viet Nam'
+GO
+/****** Object:  StoredProcedure [dbo].[ShowCTSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ShowCTSP]
+as
+select *from CTSP
+GO
+/****** Object:  StoredProcedure [dbo].[showncc]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create proc [dbo].[showncc]
+as
+select *from NCC
+GO
+/****** Object:  StoredProcedure [dbo].[ShowNV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ShowNV]
+as
+select * from NhanVien
+GO
+/****** Object:  StoredProcedure [dbo].[ShowPN]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ShowPN]
+as
+select *from PhieuNhap
+GO
+/****** Object:  StoredProcedure [dbo].[ShowSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ShowSP]
+as
+select *from SanPham
+GO
+/****** Object:  StoredProcedure [dbo].[Sua_NV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[Sua_NV]
+@_idNV char(10),
+@_TenNV nvarchar(50),
+@_Ca nvarchar(50),
+@_DC nvarchar(50),
+@_SDT int
+as
+Update NhanVien
+Set idNV = @_idNV , TenNV = @_TenNV , Ca = @_Ca , DC  = @_DC , SDT = @_SDT
+where idNV = @_idNV
+
+GO
+/****** Object:  StoredProcedure [dbo].[Sua_SP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[Sua_SP]
+@_idMH char(10),
+@_TenHang nvarchar(50),
+@_Nguong nvarchar(50),
+@_idNCC char(10)
+as
+update SanPham
+set TenHang = @_TenHang , Nguong = @_Nguong , idNCC = @_idNCC
+where idMH = @_idMH
+GO
+/****** Object:  StoredProcedure [dbo].[SuaNCC]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[SuaNCC]
+@_idNCC char(10),
+@_TenNCC nvarchar(50),
+@_DC nvarchar(50),
+@_SDT int,
+@_DonGia nvarchar(50)
+as
+Update NCC set TenNCC = @_TenNCC , DC = @_DC , SDT = @_SDT , DonGia = @_DonGia
+where idNCC = @_idNCC
+GO
+/****** Object:  StoredProcedure [dbo].[SuaNV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[SuaNV]
+@_idNV char(10),
+@_TenNV nvarchar(50),
+@_Ca nvarchar(50),
+@_DC nvarchar(50),
+@_SDT int
+as
+begin
+	UPDATE NhanVien
+	Set TenNV = @_TenNV, DC = @_DC, Ca = @_Ca, SDT = @_SDT Where idNV = @_idNV
+end
+GO
+/****** Object:  StoredProcedure [dbo].[SuaPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[SuaPX]
+@idpx char(10),
+@NgayBan date,
+@TongTien int,
+@HTTT nvarchar(20),
+@TenHang nvarchar(50),
+@idkhachhang char(10)
+as
+Update PhieuXuat
+set NgayBan = @NgayBan , TongTien = @TongTien , HTTT = @HTTT , TenHang = @TenHang , idkhachhang = @idkhachhang
+where idPX = @idpx
+GO
+/****** Object:  StoredProcedure [dbo].[SuaSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[SuaSP]
+@_idMH char(10),
+@_TenHang nvarchar(50),
+@_Nguong nvarchar(50),
+@_idNCC char(10)
+as
+update SanPham
+set TenHang = @_TenHang , Nguong = @_Nguong , idNCC = @_idNCC
+where idMH = @_idMH
+GO
+/****** Object:  StoredProcedure [dbo].[Them_NV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[Them_NV]
+@_idNV char(10),
+@_TenNV nvarchar(50),
+@_Ca nvarchar(50),
+@_DC nvarchar(50),
+@_SDT int
+as
+insert into NhanVien (idNV , TenNV , Ca , DC ,SDT) values (@_idNV , @_TenNV , @_Ca , @_DC , @_SDT)
+GO
+/****** Object:  StoredProcedure [dbo].[ThemNCC]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create proc [dbo].[ThemNCC]
+@_idNCC char(10),
+@_TenNCC nvarchar(50),
+@_DC nvarchar(50),
+@_SDT int,
+@_DonGia nvarchar(50)
+as
+insert into NCC (idNCC , TenNCC ,DC ,SDT ,DonGia) values (@_idNCC , @_TenNCC , @_DC , @_SDT , @_DonGia)
+GO
+/****** Object:  StoredProcedure [dbo].[ThemNV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ThemNV]
+@_idNV char(10),
+@_TenNV nvarchar(50),
+@_Ca nvarchar(50),
+@_DC nvarchar(50),
+@_SDT int
+as
+INSERT INTO NhanVien (idNV, TenNV, Ca, DC, SDT) values (@_idNV, @_TenNV, @_Ca, @_DC, @_SDT)
+GO
+/****** Object:  StoredProcedure [dbo].[ThemPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[ThemPX]
+@idpx char(10),
+@NgayBan date,
+@TongTien int,
+@HTTT nvarchar(20),
+@TenHang nvarchar(50),
+@idkhachhang char(10)
+as
+insert into PhieuXuat (idPX , NgayBan ,TongTien,HTTT , TenHang ,idkhachhang) values (@idpx , @NgayBan ,@TongTien, @HTTT , @TenHang ,@idkhachhang)
+GO
+/****** Object:  StoredProcedure [dbo].[themSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[themSP]
+@_idMH char(10),
+@_TenHang nvarchar(50),
+@_Nguong nvarchar(50),
+@_idNCC char(10)
+as
+insert into SanPham
+(idMH , TenHang , Nguong , idNCC) values (@_idMH , @_TenHang , @_Nguong , @_idNCC)
+GO
+/****** Object:  StoredProcedure [dbo].[Tim_NV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[Tim_NV]
+@_TenNV nvarchar(50)
+as
+SELECT *FROM NhanVien where TenNV like @_TenNV
+GO
+/****** Object:  StoredProcedure [dbo].[TimNV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[TimNV]
+@Ca nvarchar(50)
+as
+select *from NhanVien where Ca like @Ca
+GO
+/****** Object:  StoredProcedure [dbo].[TimPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[TimPX]
+@tenhang nvarchar(50)
+as
+select *from PhieuXuat where TenHang = @tenhang
+GO
+/****** Object:  StoredProcedure [dbo].[TimSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[TimSP]
+@_TenHang nvarchar(50)
+as
+select *from SanPham where TenHang like @_TenHang
+GO
+/****** Object:  StoredProcedure [dbo].[TimTenNCC]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[TimTenNCC]
+@_TenNCC nvarchar(50)
+as
+select * from NCC where TenNCC like @_TenNCC
+GO
+/****** Object:  StoredProcedure [dbo].[TongTienPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[TongTienPX]
+as
+select TongTien = SUM(TongTien) 
+from PhieuXuat
+GO
+/****** Object:  StoredProcedure [dbo].[TrongNuoc]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[TrongNuoc]
+as
+select *from NCC where DC = 'Viet Nam'
+GO
+/****** Object:  StoredProcedure [dbo].[TrucTiep]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[TrucTiep]
+as
+select *from PhieuNhap where HTTT = 'Truc Tiep'
+GO
+/****** Object:  StoredProcedure [dbo].[UpdateKH]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[UpdateKH]
+@idkhachhang char(10),
+@tenkh nvarchar (50),
+@DC nvarchar(50),
+@SDT int
+as
+UPDATE KhachHang
+SET tenkh = @tenkh , DC = @DC , SDT = @SDT
+WHERE idkhachhang = @idkhachhang
+GO
+/****** Object:  StoredProcedure [dbo].[xemMH]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[xemMH] 
+as
+select *from SanPham 
+GO
+/****** Object:  StoredProcedure [dbo].[xemSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[xemSP] 
+as
+select *from CTSP 
+GO
+/****** Object:  StoredProcedure [dbo].[Xoa]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[Xoa]
+@idncc char(10)
+as
+DELETE FROM NCC where idNCC = @idncc
+GO
+/****** Object:  StoredProcedure [dbo].[Xoa_NV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[Xoa_NV]
+@_idNV char(10)
+as
+delete from NhanVien where idNV = @_idNV
+GO
+/****** Object:  StoredProcedure [dbo].[XoaNCC]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[XoaNCC]
+@_idNCC char(10)
+as
+delete from NCC where idNCC = @_idNCC
+GO
+/****** Object:  StoredProcedure [dbo].[XoaNV]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create proc [dbo].[XoaNV]
+@_idNV char(10)
+as
+Delete from NhanVien where idNV = @_idNV
+GO
+/****** Object:  StoredProcedure [dbo].[XoaPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create proc [dbo].[XoaPX]
+@idpx char(10)
+as
+DELETE FROM PhieuXuat WHERE idPX = @idpx
+GO
+/****** Object:  StoredProcedure [dbo].[XoaSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE proc [dbo].[XoaSP]
+@_idMH char(10)
+as
+delete from SanPham where idMH = @_idMH
+GO
+/****** Object:  Table [dbo].[CTPN]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[CTPN](
+	[idPN] [char](10) NOT NULL,
+	[idNV] [char](10) NOT NULL,
+	[SoLuong] [int] NULL,
+	[DonGia] [nvarchar](50) NULL,
+	[DVT] [nvarchar](50) NULL,
+	[ThanhTien] [nvarchar](50) NULL,
+ CONSTRAINT [PN_NV] PRIMARY KEY CLUSTERED 
+(
+	[idPN] ASC,
+	[idNV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[CTPX]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[CTPX](
+	[idPX] [char](10) NOT NULL,
+	[idNV] [char](10) NOT NULL,
+	[SoLuong] [int] NULL,
+	[DonGia] [nvarchar](50) NULL,
+	[DVT] [nvarchar](50) NULL,
+	[ThanhTien] [nvarchar](50) NULL,
+ CONSTRAINT [PX_NV] PRIMARY KEY CLUSTERED 
+(
+	[idPX] ASC,
+	[idNV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[CTSP]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[CTSP](
+	[idNV] [char](10) NOT NULL,
+	[idMH] [char](10) NOT NULL,
+	[SoLuong] [int] NULL,
+	[DonGia] [nvarchar](50) NULL,
+	[DVT] [nvarchar](50) NULL,
+ CONSTRAINT [SP_NV] PRIMARY KEY CLUSTERED 
+(
+	[idMH] ASC,
+	[idNV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[KhachHang]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[KhachHang](
+	[idkhachhang] [char](10) NOT NULL,
+	[tenkh] [nvarchar](50) NULL,
+	[DC] [nvarchar](50) NULL,
+	[SDT] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idkhachhang] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[NCC]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[NCC](
+	[idNCC] [char](10) NOT NULL,
+	[TenNCC] [nvarchar](50) NULL,
+	[DC] [nvarchar](50) NULL,
+	[SDT] [int] NULL,
+	[DonGia] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idNCC] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[NhanVien]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[NhanVien](
+	[idNV] [char](10) NOT NULL,
+	[TenNV] [nvarchar](50) NULL,
+	[Ca] [nvarchar](50) NULL,
+	[DC] [nvarchar](50) NULL,
+	[SDT] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idNV] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[PhieuNhap]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[PhieuNhap](
+	[idPN] [char](10) NOT NULL,
+	[Ngay] [date] NULL,
+	[HTTT] [nvarchar](50) NULL,
+	[TongTien] [nvarchar](50) NULL,
+	[idNCC] [char](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idPN] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[PhieuXuat]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[PhieuXuat](
+	[idPX] [char](10) NOT NULL,
+	[NgayBan] [date] NULL,
+	[TongTien] [int] NULL,
+	[HTTT] [nvarchar](20) NULL,
+	[TenHang] [nvarchar](50) NULL,
+	[idkhachhang] [char](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idPX] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[SanPham]    Script Date: 3/11/2018 2:17:17 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[SanPham](
+	[idMH] [char](10) NOT NULL,
+	[TenHang] [nvarchar](50) NULL,
+	[Nguong] [nvarchar](50) NULL,
+	[idNCC] [char](10) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idMH] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+INSERT [dbo].[CTPN] ([idPN], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PN01      ', N'NV01      ', 200, N'150', N'Ðôi', N'30000')
+INSERT [dbo].[CTPN] ([idPN], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PN03      ', N'NV03      ', 1, N'180', N'Ðôi', N'180')
+INSERT [dbo].[CTPN] ([idPN], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PN04      ', N'NV01      ', 20, N'25', N'Ðôi', N'500')
+INSERT [dbo].[CTPN] ([idPN], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PN05      ', N'NV03      ', 45, N'170', N'Ðôi', N'7650')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX01      ', N'NV01      ', 1, N'150', N'Ðôi', N'150')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX02      ', N'NV01      ', 2, N'150', N'Ðôi', N'300')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX03      ', N'NV02      ', 2, N'180', N'Ðôi', N'360')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX04      ', N'NV03      ', 3, N'25', N'Ðôi', N'75')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX05      ', N'NV04      ', 6, N'25', N'Ðôi', N'150')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX06      ', N'NV05      ', 5, N'170', N'Ðôi', N'650')
+INSERT [dbo].[CTPX] ([idPX], [idNV], [SoLuong], [DonGia], [DVT], [ThanhTien]) VALUES (N'PX07      ', N'NV06      ', 1, N'150', N'Ðôi', N'150')
+INSERT [dbo].[CTSP] ([idNV], [idMH], [SoLuong], [DonGia], [DVT]) VALUES (N'NV01      ', N'MH01      ', 1, N'180', N'Ðôi')
+INSERT [dbo].[CTSP] ([idNV], [idMH], [SoLuong], [DonGia], [DVT]) VALUES (N'NV02      ', N'MH01      ', 1, N'150', N'Ðôi')
+INSERT [dbo].[CTSP] ([idNV], [idMH], [SoLuong], [DonGia], [DVT]) VALUES (N'NV03      ', N'MH01      ', 2, N'180', N'Ðôi')
+INSERT [dbo].[CTSP] ([idNV], [idMH], [SoLuong], [DonGia], [DVT]) VALUES (N'NV04      ', N'MH05      ', 3, N'25', N'Ðôi')
+INSERT [dbo].[CTSP] ([idNV], [idMH], [SoLuong], [DonGia], [DVT]) VALUES (N'NV05      ', N'MH06      ', 1, N'170', N'Ðôi')
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH01      ', N'Chieu', N'Tam Da', 904051996)
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH02      ', N'Duc', N'Ha Noi', 868154061)
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH03      ', N'Trinh Dung', N'Da Nang', 268455061)
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH04      ', N'Quynh', N'Ðà Nang', 168154061)
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH05      ', N'Duong', N'Ha Noi', 368154061)
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH06      ', N'Toàn', N'Ha Noi', 468154061)
+INSERT [dbo].[KhachHang] ([idkhachhang], [tenkh], [DC], [SDT]) VALUES (N'KH08      ', N'Minh', N'Ha Noi', 668154061)
+INSERT [dbo].[NCC] ([idNCC], [TenNCC], [DC], [SDT], [DonGia]) VALUES (N'NCC01     ', N'Nike', N'Ice Land', 12457489, N'150')
+INSERT [dbo].[NCC] ([idNCC], [TenNCC], [DC], [SDT], [DonGia]) VALUES (N'NCC03     ', N'Vans', N'Germany', 1558899, N'180')
+INSERT [dbo].[NCC] ([idNCC], [TenNCC], [DC], [SDT], [DonGia]) VALUES (N'NCC04     ', N'Bitis', N'Viet Nam', 1458899, N'25')
+INSERT [dbo].[NCC] ([idNCC], [TenNCC], [DC], [SDT], [DonGia]) VALUES (N'NCC05     ', N'Gucci', N'Italy', 2558899, N'170')
+INSERT [dbo].[NCC] ([idNCC], [TenNCC], [DC], [SDT], [DonGia]) VALUES (N'NCC06     ', N'Dolche', N'England', 1551299, N'180')
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV01      ', N'Manh', N'Sang', N'Trang Tien', 12345)
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV02      ', N'Thang', N'Sang', N'Ton Duc Thang', 12457489)
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV03      ', N'Nam', N'Sang', N'Dinh Tien Hoang', 168154021)
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV04      ', N'Hai', N'Chieu', N'Minh Giao', 578154060)
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV05      ', N'Dat', N'Chieu', N'Trang Thi', 168102060)
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV06      ', N'Lien', N'Chieu', N'Tam Da', 985909386)
+INSERT [dbo].[NhanVien] ([idNV], [TenNV], [Ca], [DC], [SDT]) VALUES (N'NV07      ', N'Hoa', N'Chieu', N'Tay Ho', 985878723)
+INSERT [dbo].[PhieuNhap] ([idPN], [Ngay], [HTTT], [TongTien], [idNCC]) VALUES (N'PN01      ', CAST(N'2017-12-24' AS Date), N'Truc Tiep', N'30000', N'NCC01     ')
+INSERT [dbo].[PhieuNhap] ([idPN], [Ngay], [HTTT], [TongTien], [idNCC]) VALUES (N'PN03      ', CAST(N'2017-12-23' AS Date), N'Chuyen Khoan', N'180', N'NCC03     ')
+INSERT [dbo].[PhieuNhap] ([idPN], [Ngay], [HTTT], [TongTien], [idNCC]) VALUES (N'PN04      ', CAST(N'2017-12-23' AS Date), N'Chuyen Khoan', N'500', N'NCC04     ')
+INSERT [dbo].[PhieuNhap] ([idPN], [Ngay], [HTTT], [TongTien], [idNCC]) VALUES (N'PN05      ', CAST(N'2017-12-23' AS Date), N'Chuyen Khoan', N'7650', N'NCC05     ')
+INSERT [dbo].[PhieuNhap] ([idPN], [Ngay], [HTTT], [TongTien], [idNCC]) VALUES (N'PN06      ', CAST(N'2017-12-23' AS Date), N'Chuyen Khoan', N'6300', N'NCC06     ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX01      ', CAST(N'2017-12-25' AS Date), 360, N'Truc Tiep', N'Addidas Basic', N'KH01      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX02      ', CAST(N'2017-12-25' AS Date), 300, N'Chuyen Khoan', N'Nike air max', N'KH04      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX03      ', CAST(N'2017-12-25' AS Date), 360, N'Truc Tiep', N'Dolche SP1', N'KH02      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX04      ', CAST(N'2017-12-25' AS Date), 75, N'Chuyen Khoan', N'Bittis Hunter', N'KH06      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX05      ', CAST(N'2017-12-25' AS Date), 300, N'Chuyen Khoan', N'Bittis Hunter', N'KH04      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX06      ', CAST(N'2017-12-25' AS Date), 1700, N'Chuyen Khoan', N'Gucci White', N'KH08      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX07      ', CAST(N'2017-12-25' AS Date), 150, N'Truc Tiep', N'Nike Air Max', N'KH05      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX08      ', CAST(N'2018-01-18' AS Date), 98090, N'Truc Tiep', N'Addidas', N'KH03      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX09      ', CAST(N'2018-03-07' AS Date), 123, N'asd', N'ssad', N'KH01      ')
+INSERT [dbo].[PhieuXuat] ([idPX], [NgayBan], [TongTien], [HTTT], [TenHang], [idkhachhang]) VALUES (N'PX10      ', CAST(N'2018-03-07' AS Date), 4324, N'tt', N'dsfdsft', N'KH01      ')
+INSERT [dbo].[SanPham] ([idMH], [TenHang], [Nguong], [idNCC]) VALUES (N'MH01      ', N'Addidas Dagon', N'250$-350$', N'NCC01     ')
+INSERT [dbo].[SanPham] ([idMH], [TenHang], [Nguong], [idNCC]) VALUES (N'MH03      ', N'Bittis Hunter', N'50$-55$', N'NCC03     ')
+INSERT [dbo].[SanPham] ([idMH], [TenHang], [Nguong], [idNCC]) VALUES (N'MH04      ', N'Gucci White', N'450$-550$', N'NCC04     ')
+INSERT [dbo].[SanPham] ([idMH], [TenHang], [Nguong], [idNCC]) VALUES (N'MH05      ', N'Dolche SP1', N'170$-180$', N'NCC05     ')
+INSERT [dbo].[SanPham] ([idMH], [TenHang], [Nguong], [idNCC]) VALUES (N'MH06      ', N'Addidas Basic', N'140$-150$', N'NCC06     ')
+ALTER TABLE [dbo].[CTPN]  WITH CHECK ADD FOREIGN KEY([idNV])
+REFERENCES [dbo].[NhanVien] ([idNV])
+GO
+ALTER TABLE [dbo].[CTPN]  WITH CHECK ADD FOREIGN KEY([idPN])
+REFERENCES [dbo].[PhieuNhap] ([idPN])
+GO
+ALTER TABLE [dbo].[CTPX]  WITH CHECK ADD FOREIGN KEY([idNV])
+REFERENCES [dbo].[NhanVien] ([idNV])
+GO
+ALTER TABLE [dbo].[CTPX]  WITH CHECK ADD FOREIGN KEY([idPX])
+REFERENCES [dbo].[PhieuXuat] ([idPX])
+GO
+ALTER TABLE [dbo].[CTSP]  WITH CHECK ADD FOREIGN KEY([idMH])
+REFERENCES [dbo].[SanPham] ([idMH])
+GO
+ALTER TABLE [dbo].[CTSP]  WITH CHECK ADD FOREIGN KEY([idNV])
+REFERENCES [dbo].[NhanVien] ([idNV])
+GO
+ALTER TABLE [dbo].[PhieuNhap]  WITH CHECK ADD FOREIGN KEY([idNCC])
+REFERENCES [dbo].[NCC] ([idNCC])
+GO
+ALTER TABLE [dbo].[PhieuXuat]  WITH CHECK ADD FOREIGN KEY([idkhachhang])
+REFERENCES [dbo].[KhachHang] ([idkhachhang])
+GO
+ALTER TABLE [dbo].[SanPham]  WITH CHECK ADD FOREIGN KEY([idNCC])
+REFERENCES [dbo].[NCC] ([idNCC])
+GO
+USE [master]
+GO
+ALTER DATABASE [QuanLyBanHang] SET  READ_WRITE 
+GO
